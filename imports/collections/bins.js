@@ -18,7 +18,12 @@ Meteor.methods({
   'bins.update': function (bin, content) {
     return Bins.update(bin._id, { $set: { content } });
     // ES6 { content : content } can to { content }
+  },
+
+  'bins.share': function (bin, email) {
+    return Bins.update(bin._id, { $push: { sharedWith: email } });
   }
+
 });
 
 export const Bins = new Mongo.Collection('bins');
